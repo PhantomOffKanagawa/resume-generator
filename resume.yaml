@@ -1,0 +1,79 @@
+name: Harrison Surma
+address: Naperville, IL 60563
+phone: (630) 460-6512
+email: harry@surmafamily.com
+github: https://github.com/PhantomOffKanagawa
+linkedin: https://www.linkedin.com/in/phantom-off-kanagawa/
+education:
+  university: University of Missouri
+  location: Columbia, Missouri
+  degree: Bachelor of Science in Computer Science
+  graduation: May 2025
+  minor: Psychology
+  gpa: 3.74/4.00
+awards_honors:
+  - title: Mizzou Honors College
+    date: August 2021 - Present
+    details:
+      - A selective society that requires a maintained cumulative 3.5 GPA and allows enrollment in classes with higher rigor and unique content such as Behavioral Science and Writing & Rhetoric
+  - title: Mizzou High Dean's List
+    date: Fall 2021, Spring 2022, Fall 2022, Spring 2023, Fall 2023, Spring 2024
+    details:
+      - Awarded to students with a minimum of a 3.5 GPA. Awarded each semester since Fall 2021.
+projects:
+  - title: Halloween Laser Tag
+    description: Created and synthesized hardware and software system to register laser “hits” and engage IOT on various platforms devices through API in response.
+  - title: Personal Web Apps
+    description: Shuttle Timing, Availability Planning, & Constraint Satisfaction Problem based Meal Plan Generation. All made to be simple, clean, and universal.
+  - title: “Disney FastPass” Replica Ornament
+    description: Ornament with Arduino for NFC reading ornament with RGB ring light animation held in place with a Fusion 360 design 3D print harness.
+work_experience:
+  - company: Red Robin
+    location: Naperville, Illinois
+    position: Host
+    date: May 2021 - August 2021
+    details:
+      - Provided excellent customer service and addressed customer needs in a timely manner.
+      - Communicated with servers to seat guests in accordance with server availability.
+      - Managed packaging and accepting payments for to-go orders in addition to regular duties.
+leadership_volunteer:
+  - organization: SURF Underwater Robotics
+    location: University of Missouri, Columbia
+    role: Participation and Leadership in Software Group
+    date: 2023-2024
+    details:
+      - Work on motor communication and image processing for task completion.
+      - Leadership of software group, educating and preparing new members for coding and source control.
+  - organization: “DNA Night”
+    location: DuPage County, IL
+    role: Volunteering for local Elementary and Middle Schools
+    date: 2014 - 2018
+    details:
+      - Lead the group in charge of logistics for setup and cleanup of labs in a timely fashion.
+      - Helped manage setup and cleanup of the event in accordance with verbal standards.
+  - organization: “STEM Night”
+    location: DuPage County, IL
+    role: Volunteering for local Elementary Schools
+    date: 2017 - 2018
+    details:
+      - Ran presentation and information booth on 3D Printers.
+      - Supported food services, smaller labs, and other general setup work.
+  - organization: Miseracordia
+    location: Chicagoland Area, IL
+    role: A Community for Persons with Developmental Disabilities
+    date: 2010 - 2016
+    details:
+      - Supported annual fundraising event by volunteering and running at booths.
+      - Spread awareness through donation collection at store fronts and roads in the community.
+skills:
+  - JavaScript
+  - C
+  - Python
+  - HTM
+  - CSS
+  - Java
+  - Node.js
+  - SQL
+  - Assembly
+  - Project Organization
+  - Communication

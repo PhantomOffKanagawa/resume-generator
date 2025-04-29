@@ -1,0 +1,8 @@
+# Ignore LaTeX generated files
+*.log
+*.aux
+*.out
+
+# Ignore generated pdf & latex files
+*.pdf
+resume.tex

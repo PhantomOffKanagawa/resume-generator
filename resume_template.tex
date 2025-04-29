@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{mathptmx} % Add this line
+\usepackage[T1]{fontenc} % Add this line
+
+\setlist[itemize]{noitemsep, topsep=0pt}
+\pagestyle{empty}
+
+% Reduce vertical space before and after all \section*
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{1em}{0.3em}
+\titleformat{\section}
+    {\normalfont\fontsize{12pt}{14pt}\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+
+% Remove auto indentation for all paragraphs
+% https://tex.stackexchange.com/a/59248
+\setlength{\parindent}{0pt}\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+
+
+%--------------------
+\begin{document}
+% Name and Contact
+\hypersetup{
+    colorlinks=false,
+    linkcolor=black,
+    urlcolor=black,
+    pdfborder={0 0 0}
+}
+\begin{center}
+    {\LARGE \textbf{ {{ name }} }} \\
+    {{ address }} $|$ {{ phone }} $|$ \href{mailto:{{ email }}}{{ email }} \\
+    \href{ {{ github }} }{ {{ github }} } \\
+    \href{ {{ linkedin }} }{ {{ linkedin }} }
+\end{center}
+
+\section*{Education}
+\textbf{\relax {{ education.university }}} \hfill {{ education.location }} \\
+{{ education.degree }} \hfill Anticipated Graduation: {{ education.graduation }} \\
+Minor in {{ education.minor }} \hfill GPA {{ education.gpa }}
+
+% Awards & Honors
+\section*{Awards \& Honors}
+{% for award in awards_honors %}
+\textit{\relax {{award.title }}} \hfill \textit{\relax {{ award.date }}}
+\begin{itemize}
+{% for detail in award.details %}
+    \item {{ detail }}
+{% endfor %}
+\end{itemize}
+{% endfor %}
+
+% Projects
+\section*{Projects}
+\noindent
+\begin{itemize}
+{% for project in projects %}
+    \item \textit{\relax {{project.title }}}: {{ project.description }}
+{% endfor %}
+\end{itemize}
+
+% Work Experience
+\section*{Work Experience}
+\noindent
+{% for job in work_experience %}
+{{ job.company }} \hfill {{ job.location }} \\
+\textit{ {{ job.position }}} \hfill \textit{\relax {{ job.date }}}
+\begin{itemize}
+{% for detail in job.details %}
+    \item {{ detail }}
+{% endfor %}
+\end{itemize}
+{% endfor %}
+
+% Leadership & Volunteer Experience
+\section*{Leadership \& Volunteer Experience}
+\noindent
+{% for item in leadership_volunteer %}
+{{item.organization }} \hfill {{ item.location }} \\
+\textit{\relax {{ item.role }}} \hfill \textit{\relax {{ item.date }}}
+\begin{itemize}
+{% for detail in item.details %}
+    \item {{ detail }}
+{% endfor %}
+\end{itemize}
+{% endfor %}
+
+% Skills
+\section*{Skills}
+\begin{center}
+    {{ skills | join(", ") }}
+\end{center}
+
+\end{document}

@@ -1,0 +1,57 @@
+name: Build and Release Resume PDF
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jinja2 pyyaml pdflatex
+          sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra
+
+      - name: Generate PDF
+        run: |
+          python resume_to_pdf.py
+
+      - name: Get version
+        id: version
+        run: |
+          VERSION=$(date +'%Y.%m.%d-%H%M')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Generate Release Notes
+        id: release_notes
+        run: |
+          echo "Resume as updated on $(date '+%B %d, %Y at %H:%M')" > release-notes.md
+          echo "" >> release-notes.md
+          if [ -f CHANGELOG.md ]; then
+            echo "## Changelog" >> release-notes.md
+            cat CHANGELOG.md >> release-notes.md
+          else
+            echo "_No changelog available._" >> release-notes.md
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Resume Release ${{ steps.version.outputs.version }}
+          files: resume.pdf
+          body_path: release-notes.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
