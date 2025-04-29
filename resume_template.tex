@@ -34,16 +34,17 @@
     pdfborder={0 0 0}
 }
 \begin{center}
-    {\LARGE \textbf{ {{ name }} }} \\
-    {{ address }} $|$ {{ phone }} $|$ \href{mailto:{{ email }}}{{ email }} \\
-    \href{ {{ github }} }{ {{ github }} } \\
-    \href{ {{ linkedin }} }{ {{ linkedin }} }
+     {\LARGE \textbf{ {{ name }} }} \\
+        {{ address }} $|$ {{ phone }} $|$ \underline{\href{mailto:{{ email }}}{{ email }}} \\
+        \underline{\href{ {{ github }} }{ {{ github }} }} \\
+        \underline{\href{ {{ linkedin }} }{ {{ linkedin }} }}
 \end{center}
 
 \section*{Education}
 \textbf{\relax {{ education.university }}} \hfill {{ education.location }} \\
-{{ education.degree }} \hfill Anticipated Graduation: {{ education.graduation }} \\
-Minor in {{ education.minor }} \hfill GPA {{ education.gpa }}
+{{ education.degree }} \hfill Graduation: {{ education.graduation }} \\
+Minor in {{ education.minor }} \hfill GPA {{ education.gpa }} \\
+Certification in {{ education.certification }} \hfill {{ education.latin_honors }}
 
 % Awards & Honors
 \section*{Awards \& Honors}
