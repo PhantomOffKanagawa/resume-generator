@@ -24,7 +24,7 @@ awards_honors:
       - Awarded to students with a minimum of a 3.5 GPA. Awarded each semester since Fall 2021.
 projects:
   - title: Halloween Laser Tag
-    description: Created and synthesized hardware and software system to register laser “hits” and engage IOT on various platforms devices through API in response.
+    description: Created and synthesized hardware and software system to register laser “hits” and engage IoT on various platforms devices through API in response.
   - title: Personal Web Apps
     description: Shuttle Timing, Availability Planning, & Constraint Satisfaction Problem based Meal Plan Generation. All made to be simple, clean, and universal.
   - title: “Disney FastPass” Replica Ornament
