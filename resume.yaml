@@ -25,10 +25,15 @@ awards_honors:
 projects:
   - title: Halloween Laser Tag
     description: Created and synthesized hardware and software system to register laser “hits” and engage IoT on various platforms devices through API in response.
+    link: https://github.com/PhantomOffKanagawa/Home-Hosted-Laser-Arcade
   - title: Personal Web Apps
     description: Shuttle Timing, Availability Planning, & Constraint Satisfaction Problem based Meal Plan Generation. All made to be simple, clean, and universal.
-  - title: “Disney FastPass” Replica Ornament
-    description: Ornament with Arduino for NFC reading ornament with RGB ring light animation held in place with a Fusion 360 design 3D print harness.
+    link: https://github.com/PhantomOffKanagawa?tab=repositories
+  # - title: “Disney FastPass” Replica Ornament
+  #   description: Ornament with Arduino for NFC reading ornament with RGB ring light animation held in place with a Fusion 360 design 3D print harness.
+  - title: Resume Generator
+    description: A github repository that generates a pdf resume with github actions, yaml, and latex.
+    link: https://github.com/PhantomOffKanagawa/resume-generator
 work_experience:
   - company: Red Robin
     location: Naperville, Illinois

@@ -2,6 +2,8 @@ import jinja2
 import yaml
 import subprocess
 import os
+import sys
+import argparse
 
 # Load resume details from a YAML file
 def load_resume_details(yaml_path):
@@ -31,7 +33,11 @@ def escape_dict(d):
         return escape_latex(d)
 
 # Generate a LaTeX file from resume details
-def render_latex_from_template(resume_data, template_path, tex_path):
+def render_latex_from_template(resume_data, template_path, tex_path, version=None):
+    # Add version to resume data if provided
+    if version:
+        resume_data['version'] = version
+    
     resume_data = escape_dict(resume_data)
     with open(template_path, 'r', encoding='utf-8') as f:
         template_content = f.read()
@@ -66,12 +72,16 @@ def latex_to_pdf(tex_path, output_dir=None):
         return None
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Generate resume PDF from YAML data')
+    parser.add_argument('--version', help='Version to include in the resume')
+    args = parser.parse_args()
+    
     yaml_path = 'resume.yaml'  # Ensure this file exists in the directory
     template_path = 'resume_template.tex'  # Ensure this file exists in the directory
     tex_path = 'resume.tex'  # Output LaTeX file
     output_dir = '.'
 
     resume_data = load_resume_details(yaml_path)
-    render_latex_from_template(resume_data, template_path, tex_path)
+    render_latex_from_template(resume_data, template_path, tex_path, args.version)
     pdf_path = latex_to_pdf(tex_path, output_dir)
     print(f"PDF generated at: {pdf_path}")
