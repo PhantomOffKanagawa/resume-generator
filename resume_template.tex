@@ -71,9 +71,9 @@ Certification in {{ education.certification }} \hfill {{ education.latin_honors 
 {% for project in projects %}
     \item 
 {% if project.title == "Resume Generator" and project.link and version %}
-    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}: {{ project.description }}  This resume is version "{{version}}" generated from the same repository.
+    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}: \href{ {{project.link}} }{ {{ project.description }} This resume is version "{{version}}" generated from the same repository. }
 {% elif project.link %}
-    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}: {{ project.description }}
+    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}: \href{ {{project.link}} }{ {{ project.description }} }
 {% elif project.title == "Resume Generator" and version %}
     \textit{\relax {{ project.title }}}: {{ project.description }}  This resume is version "{{version}}" generated from the same repository.
 {% else %}

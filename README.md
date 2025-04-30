@@ -6,6 +6,9 @@
 ![LaTeX](https://img.shields.io/badge/LaTeX-blue?style=for-the-badge&logo=latex&logoColor=white)
 ![GitHub Release](https://img.shields.io/github/v/release/PhantomOffKanagawa/resume-generator?style=for-the-badge)
 ![GitHub Release Date](https://img.shields.io/github/release-date/PhantomOffKanagawa/resume-generator?style=for-the-badge)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/PhantomOffKanagawa/resume-generator?style=for-the-badge)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-blue?style=for-the-badge&logo=github&logoColor=white)](https://phantomoffkanagawa.github.io/resume-generator/)
+![Commits](https://img.shields.io/github/commit-activity/m/PhantomOffKanagawa/resume-generator?style=for-the-badge)
 
 > **Generate beautiful, consistent resumes from YAML using LaTeX and Jinja2 templates.**
 
@@ -19,6 +22,10 @@ I got tired of manually tracking down 8 different places to update my resume, so
 - 🤖 **GitHub Actions workflow** to auto-build and release your PDF on every push
 - 🛠️ **Easy to extend** for your own sections and styling
 - 📦 **Local support** – works locally as well as from github actions
+- **Commit Based Actions** – Automatically build and release your resume on every push to `main`
+
+>[!NOTE]
+> Commits can be marked with `[skip]` to skip the build and release process, `[release]` to trigger a release, or `[portfolio]` to trigger a release and make a pull request to the `portfolio` repo.
 
 ## 🚀 Quick Start
 

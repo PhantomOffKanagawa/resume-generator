@@ -5,9 +5,87 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      action_type:
+        description: 'Action to perform'
+        required: true
+        default: 'build_only'
+        type: choice
+        options:
+          # - skip
+          - build_only
+          - release
+          - portfolio
 
 jobs:
+  determine-action:
+    runs-on: ubuntu-latest
+    outputs:
+      build: ${{ steps.check-commit.outputs.build }}
+      build_only: ${{ steps.check-commit.outputs.build_only }}
+      release: ${{ steps.check-commit.outputs.release }}
+      pr_portfolio: ${{ steps.check-commit.outputs.pr_portfolio }}
+      # skip: ${{ steps.check-commit.outputs.skip }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Check commit message or workflow inputs
+        id: check-commit
+        run: |
+          # Default to build only
+          SHOULD_BUILD=true
+          SHOULD_RELEASE=false
+          SHOULD_PR_PORTFOLIO=false
+          SHOULD_SKIP=false
+          
+          # Check if this is a workflow dispatch
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "Workflow dispatch triggered with action: ${{ github.event.inputs.action_type }}"
+            
+            # Set action based on workflow dispatch input
+            if [[ "${{ github.event.inputs.action_type }}" == "release" ]]; then
+              SHOULD_BUILD=true
+              SHOULD_RELEASE=true
+            elif [[ "${{ github.event.inputs.action_type }}" == "portfolio" ]]; then
+              SHOULD_BUILD=true
+              SHOULD_RELEASE=true
+              SHOULD_PR_PORTFOLIO=true
+            fi
+
+          else
+            # This is a push event, check commit message
+            COMMIT_MSG=$(git log -1 --pretty=%B)
+            echo "Commit message: $COMMIT_MSG"
+            
+            # Check for skip keyword
+            if [[ "$COMMIT_MSG" == *"[skip]"* ]]; then
+              SHOULD_BUILD=false
+              SHOULD_SKIP=true
+              echo "Skipping all actions as requested in commit message"
+            # Check for release keyword
+            elif [[ "$COMMIT_MSG" == *"[release]"* ]]; then
+              SHOULD_BUILD=true
+              SHOULD_RELEASE=true
+            # Check for portfolio PR keyword
+            elif [[ "$COMMIT_MSG" == *"[portfolio]"* ]]; then
+              SHOULD_BUILD=true
+              SHOULD_RELEASE=true
+              SHOULD_PR_PORTFOLIO=true
+            fi
+          fi
+          
+          # Set outputs
+          echo "build=$SHOULD_BUILD" >> $GITHUB_OUTPUT
+          echo "release=$SHOULD_RELEASE" >> $GITHUB_OUTPUT
+          echo "pr_portfolio=$SHOULD_PR_PORTFOLIO" >> $GITHUB_OUTPUT
+          echo "skip=$SHOULD_SKIP" >> $GITHUB_OUTPUT
+
   build-and-release:
+    needs: determine-action
+    if: ${{ needs.determine-action.outputs.build == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -52,6 +130,7 @@ jobs:
 
       - name: Create Release
         id: create_release
+        if: ${{ needs.determine-action.outputs.release == 'true' }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.version.outputs.version }}
@@ -69,7 +148,8 @@ jobs:
           
   # Deploy to GitHub Pages
   deploy-pages:
-    needs: build-and-release
+    needs: [determine-action, build-and-release]
+    if: ${{ needs.determine-action.outputs.release == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -152,3 +232,42 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
+  # Create PR to portfolio repository
+  update-portfolio:
+    needs: [determine-action, build-and-release]
+    if: ${{ needs.determine-action.outputs.pr_portfolio == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout portfolio repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/portfolio
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: portfolio
+          
+      - name: Download resume artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: resume-pdf
+          
+      - name: Copy resume to portfolio repository
+        run: |
+          cp resume.pdf portfolio/HarrisonSurmaResume.pdf
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          # Personal Access Token to access the portfolio repository
+          token: ${{ secrets.GH_PAT }}
+          path: portfolio
+          commit-message: "Update resume to version v${{ needs.build-and-release.outputs.version }}"
+          title: "Update HarrisonSurmaResume.pdf to latest version"
+          body: |
+            This PR updates the resume PDF to the latest version (v${{ needs.build-and-release.outputs.version }}).
+            
+            Automatically generated from resume-generator repository.
+          branch: update-resume-${{ needs.build-and-release.outputs.version }}
+          delete-branch: true
