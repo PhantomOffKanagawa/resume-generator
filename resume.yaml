@@ -23,26 +23,36 @@ awards_honors:
     details:
       - Awarded to students with a minimum of a 3.5 GPA. Awarded each semester since Fall 2021.
 projects:
-  - title: Halloween Laser Tag
-    description: Created and synthesized hardware and software system to register laser “hits” and engage IoT on various platforms devices through API in response.
-    link: https://github.com/PhantomOffKanagawa/Home-Hosted-Laser-Arcade
-  - title: Personal Web Apps
-    description: Shuttle Timing, Availability Planning, & Constraint Satisfaction Problem based Meal Plan Generation. All made to be simple, clean, and universal.
-    link: https://github.com/PhantomOffKanagawa?tab=repositories
-  # - title: “Disney FastPass” Replica Ornament
-  #   description: Ornament with Arduino for NFC reading ornament with RGB ring light animation held in place with a Fusion 360 design 3D print harness.
+  - title: MealGen
+    description: A Fullstack MERN + GraphQL web app for developing drag and drop meal plans with Websocket powered real-time collaboration. Fully deployable from a Docker container.
+    link: https://github.com/PhantomOffKanagawa/MealGen
+  - title: Canvas CLI
+    description: A command line interface for interacting with the Canvas LMS API, allowing students to submit and manage course information and assignments. Tested, built, and deployed to PyPI with Github Actions.
+    link: https://pypi.org/project/canvas-cmd/
+  - title: Portfolio
+    description: A dynamically generated portfolio website using React, Node.js, and Express. It is hosted on GitHub Pages and uses GitHub Actions for deployment.
+    link: https://github.com/PhantomOffKanagawa/portfolio
   - title: Resume Generator
     description: A github repository that generates a pdf resume with github actions, yaml, and latex.
     link: https://github.com/PhantomOffKanagawa/resume-generator
-work_experience:
-  - company: Red Robin
-    location: Naperville, Illinois
-    position: Host
-    date: May 2021 - August 2021
-    details:
-      - Provided excellent customer service and addressed customer needs in a timely manner.
-      - Communicated with servers to seat guests in accordance with server availability.
-      - Managed packaging and accepting payments for to-go orders in addition to regular duties.
+  - title: Personal Web Apps
+    description: Shuttle Timing, Availability Planning, & Constraint Satisfaction Problem based Meal Plan Generation. All made to be simple, clean, and universal.
+    link: https://harrison.surma.family/#/category/Web%20App
+  - title: Halloween Laser Tag
+    description: Created and synthesized hardware and software system to register laser “hits” and engage IoT on various platforms devices through API in response.
+    link: https://github.com/PhantomOffKanagawa/Home-Hosted-Laser-Arcade
+  # - title: “Disney FastPass” Replica Ornament
+  #   description: Ornament with Arduino for NFC reading ornament with RGB ring light animation held in place with a Fusion 360 design 3D print harness.
+
+# work_experience:
+#   - company: Red Robin
+#     location: Naperville, Illinois
+#     position: Host
+#     date: May 2021 - August 2021
+#     details:
+#       - Provided excellent customer service and addressed customer needs in a timely manner.
+#       - Communicated with servers to seat guests in accordance with server availability.
+#       - Managed packaging and accepting payments for to-go orders in addition to regular duties.
 leadership_volunteer:
   - organization: SURF Underwater Robotics
     location: University of Missouri, Columbia

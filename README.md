@@ -91,10 +91,6 @@ To test the GitHub Actions workflow locally and see the output PDF:
    ```
    The PDF will be generated in your local directory as resume.pdf.
 
-## 📜 License
-
-This project is open source under the GNU License.
-
 ## 🤝 Contributing
 
 Pull requests and issues are welcome! Help improve the template, workflow, or add new features.

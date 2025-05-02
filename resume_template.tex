@@ -6,12 +6,12 @@
 \usepackage{mathptmx} % Add this line
 \usepackage[T1]{fontenc} % Add this line
 
-\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[itemize]{noitemsep, topsep=2pt}
 \pagestyle{empty}
 
 % Reduce vertical space before and after all \section*
 \usepackage{titlesec}
-\titlespacing{\section}{0pt}{1em}{0.3em}
+\titlespacing{\section}{0pt}{0.7em}{0.5em}
 \titleformat{\section}
     {\normalfont\fontsize{12pt}{14pt}\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
 
@@ -71,17 +71,18 @@ Certification in {{ education.certification }} \hfill {{ education.latin_honors 
 {% for project in projects %}
     \item 
 {% if project.title == "Resume Generator" and project.link and version %}
-    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}: \href{ {{project.link}} }{ {{ project.description }} This resume is version "{{version}}" generated from the same repository. }
+    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}:\href{ {{project.link}} }{ {{ project.description }} This resume is version "{{version}}" generated from the same repository. }
 {% elif project.link %}
-    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}: \href{ {{project.link}} }{ {{ project.description }} }
+    \textit{\underline{\href{ {{project.link}}}{ {{project.title}}}}}:\href{ {{project.link}} }{ {{ project.description }} }
 {% elif project.title == "Resume Generator" and version %}
-    \textit{\relax {{ project.title }}}: {{ project.description }}  This resume is version "{{version}}" generated from the same repository.
+    \textit{\relax {{ project.title }}}: {{project.description }}  This resume is version "{{version}}" generated from the same repository.
 {% else %}
-    \textit{\relax {{ project.title }}}: {{ project.description }}
+    \textit{\relax {{ project.title }}}: {{project.description }}
 {% endif %}
 {% endfor %}
 \end{itemize}
 
+{% if work_experience %}
 % Work Experience
 \section*{Work Experience}
 \noindent
@@ -94,6 +95,7 @@ Certification in {{ education.certification }} \hfill {{ education.latin_honors 
 {% endfor %}
 \end{itemize}
 {% endfor %}
+{% endif %}
 
 % Leadership & Volunteer Experience
 \section*{Leadership \& Volunteer Experience}
