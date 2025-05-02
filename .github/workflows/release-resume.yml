@@ -255,7 +255,7 @@ jobs:
           
       - name: Copy resume to portfolio repository
         run: |
-          cp resume.pdf portfolio/Harrison-Surma-Resume.pdf
+          cp resume.pdf portfolio/public/Harrison-Surma-Resume.pdf
           
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
